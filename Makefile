@@ -25,3 +25,6 @@ run-inner: build
         -device loader,file=$(KERNEL_BIN),addr=$(KERNEL_ENTRY_PA)
 
 build: $(KERNEL_BIN)
+
+clean:
+	rm -r target
