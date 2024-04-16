@@ -13,7 +13,7 @@ kernel:
 KERNEL_ENTRY_PA := 0x80200000
 BOARD                ?= qemu
 SBI                  ?= rustsbi
-BOOTLOADER   := ../rCore-Tutorial-Code-2024S/bootloader/$(SBI)-$(BOARD).bin
+BOOTLOADER   := bootloader/$(SBI)-$(BOARD).bin
 
 run: run-inner
 
