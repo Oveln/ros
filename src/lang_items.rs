@@ -1,6 +1,8 @@
 use core::panic::PanicInfo;
 
-use crate::{println, sbi::shutdown};
+use sbi_rt::{Shutdown, SystemFailure};
+
+use crate::println;
 
 #[panic_handler]
 fn panic(info: &PanicInfo) -> ! {
@@ -14,5 +16,6 @@ fn panic(info: &PanicInfo) -> ! {
     } else {
         println!("[kernel] Panicked: {}", info)
     }
-    shutdown()
+    sbi_rt::system_reset(Shutdown, SystemFailure);
+    unreachable!()
 }

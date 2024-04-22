@@ -1,13 +1,11 @@
 use core::fmt::{self, Write};
 
-use crate::sbi::console_putchar;
-
 struct Stdout;
 
 impl Write for Stdout {
     fn write_str(&mut self, s: &str) -> core::fmt::Result {
         for c in s.chars() {
-            console_putchar(c as usize);
+            sbi_rt::console_write_byte(c as u8);
         }
         Ok(())
     }

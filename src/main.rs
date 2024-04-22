@@ -1,11 +1,10 @@
 #![no_std]
 #![no_main]
 
-use sbi::shutdown;
+use sbi_rt::{NoReason, Shutdown};
 
 mod console;
 mod lang_items;
-mod sbi;
 
 fn clear_bss() {
     extern "C" {
@@ -21,5 +20,5 @@ core::arch::global_asm!(include_str!("entry.asm"));
 pub fn rust_main() {
     clear_bss();
     println!("Hello World!");
-    shutdown();
+    sbi_rt::system_reset(Shutdown, NoReason);
 }
